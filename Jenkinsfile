@@ -6,19 +6,12 @@ pipeline {
         }
     }
 
-    options {
-        buildDiscarder logRotator(
-                    daysToKeepStr: '16',
-                    numToKeepStr: '10'
-            )
-    }
-
     stages {
 
         stage('Cleanup Workspace') {
             steps {
                 cleanWs()
-                build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'), string(name: 'FORCE_RUN', value: 'yes')]
+             //   build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'), string(name: 'FORCE_RUN', value: 'yes')]
             }
         }
 
