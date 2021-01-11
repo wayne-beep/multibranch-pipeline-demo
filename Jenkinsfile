@@ -16,10 +16,7 @@ pipeline {
                         timeout(time: 10,unit: 'SECONDS') {
                             build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'),string(name: 'FORCE_RUN', value: 'yes')]
                         }
-                        def a = false
-                        if (a) {
-                            currentBuild.result = 'ABORTED'
-                        }
+                        currentBuild.result = 'ABORTED'
                     } catch (Exception e) {
                         echo "downstream job run false"
                     }
