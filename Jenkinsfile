@@ -10,10 +10,10 @@ pipeline {
 
         stage('Cleanup Workspace') {
             steps {
-                cleanWs()
                 script {
                     try {
-                        timeout(time: 5,unit: 'SECONDS') {
+                        echo "start timeout"
+                        timeout(time: 150,unit: 'MINUTES') {
                             build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'),string(name: 'FORCE_RUN', value: 'yes')]
                         }
                     } catch (Exception e) {
