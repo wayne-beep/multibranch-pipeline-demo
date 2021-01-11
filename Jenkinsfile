@@ -13,7 +13,7 @@ pipeline {
                 script {
                     try {
                         echo "start timeout"
-                        timeout(time: 10,unit: 'SECONDS') {
+                        timeout(time: 20,unit: 'SECONDS') {
                             build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'),string(name: 'FORCE_RUN', value: 'yes')]
                         }
                         currentBuild.result = 'ABORTED'
