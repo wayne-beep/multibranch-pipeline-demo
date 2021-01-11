@@ -13,7 +13,7 @@ pipeline {
                 cleanWs()
                 try {
                     timeout(time: 5,unit: 'SECONDS') {
-                        build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'),, string(name: 'FORCE_RUN', value: 'yes')]
+                        build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'),string(name: 'FORCE_RUN', value: 'yes')]
                     }
                 } catch (Exception e) {
                     echo "downstream job run false"
