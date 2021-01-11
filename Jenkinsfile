@@ -18,7 +18,7 @@ pipeline {
         stage('Cleanup Workspace') {
             steps {
                 cleanWs()
-                build 'simple-pipline-test/develop'
+                build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'), string(name: 'FORCE_RUN', value: 'yes')]
             }
         }
 
