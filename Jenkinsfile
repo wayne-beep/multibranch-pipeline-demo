@@ -29,12 +29,14 @@ pipeline {
         }
 
         stage(' Unit Testing') {
-            anyof {
-               branch 'PR-*'
-               allOf {
-                   environment name: 'RUN_AUTOMATIONTEST', value: 'yes'
-                   environment name: 'IS_AUTOMATION_TEST', value: 'yes'
-               }
+            when {
+                anyof {
+                   branch 'PR-*'
+                   allOf {
+                       environment name: 'RUN_AUTOMATIONTEST', value: 'yes'
+                       environment name: 'IS_AUTOMATION_TEST', value: 'yes'
+                   }
+                }
             }
             steps {
                 sh """
