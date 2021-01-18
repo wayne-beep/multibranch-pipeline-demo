@@ -6,6 +6,10 @@ pipeline {
         }
     }
 
+    environment {
+        RUN_AUTOMATIONTEST = 'yes'
+        IS_AUTOMATION_TEST = 'no'
+    }
     stages {
 
         stage('Cleanup Workspace') {
@@ -13,7 +17,7 @@ pipeline {
                 script {
                     try {
                         echo "start timeout"
-                        timeout(time: 20,unit: 'SECONDS') {
+                        timeout(time: 3,unit: 'SECONDS') {
                             build job: 'simple-pipline-test/develop', parameters: [ string(name: 'ENVIRONMENT_TAG', value: 'cap'),string(name: 'FORCE_RUN', value: 'yes')]
                         }
                     } catch (Exception e) {
@@ -25,6 +29,13 @@ pipeline {
         }
 
         stage(' Unit Testing') {
+            anyof {
+               branch 'PR-*'
+               allOf {
+                   environment name: 'RUN_AUTOMATIONTEST', value: 'yes'
+                   environment name: 'IS_AUTOMATION_TEST', value: 'yes'
+               }
+            }
             steps {
                 sh """
                 sleep 3
