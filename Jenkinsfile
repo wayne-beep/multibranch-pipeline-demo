@@ -43,6 +43,7 @@ pipeline {
                 sleep 3
                 echo "Running Unit Tests"
                 """
+                GitCommitID = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
             }
         }
 
