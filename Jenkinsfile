@@ -1,3 +1,4 @@
+def GitCommitID
 pipeline {
 
     agent {
@@ -44,7 +45,7 @@ pipeline {
                 sleep 3
                 echo "Running Unit Tests"
                 """
-                def GitCommitID = sh(returnStdout: true, script: 'git show -s --format=%s').trim()
+                GitCommitID = sh(returnStdout: true, script: 'git show -s --format=%s').trim()
                 sh "echo ${GitCommitID}"
             }
         }
