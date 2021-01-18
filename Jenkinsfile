@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         RUN_AUTOMATIONTEST = 'yes'
-        IS_AUTOMATION_TEST = 'no'
+        IS_AUTOMATION_TEST = 'yes'
     }
     stages {
 
