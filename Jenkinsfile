@@ -30,7 +30,7 @@ pipeline {
 
         stage(' Unit Testing') {
             when {
-                anyof {
+                anyOf {
                    branch 'PR-*'
                    allOf {
                        environment name: 'RUN_AUTOMATIONTEST', value: 'yes'
