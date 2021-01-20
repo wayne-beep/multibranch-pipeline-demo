@@ -6,7 +6,7 @@ pipeline {
             label 'master'
         }
     }
-    triggers{ cron('22 05 * * *') }
+    triggers{ cron('26 06 * * *') }
     environment {
         RUN_AUTOMATIONTEST = 'yes'
         IS_AUTOMATION_TEST = 'yes'
