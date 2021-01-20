@@ -1,3 +1,4 @@
+def GitCommitID
 pipeline {
 
     agent {
@@ -11,6 +12,7 @@ pipeline {
         IS_AUTOMATION_TEST = 'yes'
     }
     stages {
+
 
        // stage('Cleanup Workspace') {
        //     steps {
@@ -43,7 +45,8 @@ pipeline {
                 sleep 3
                 echo "Running Unit Tests"
                 """
-                GitCommitID = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+                GitCommitID = sh(returnStdout: true, script: 'git show -s --format=%s').trim()
+                sh "echo ${GitCommitID}"
             }
         }
 
